@@ -13,10 +13,12 @@ class StubSomeThing():
     def __init__(self):
         self.do_some_thing_called = 0
         self.do_some_other_thing_called = 0
-    def do_some_thing(self, *args):
+    def do_some_thing(self):
+        """ count number of times called """
         self.do_some_thing_called += 1
         return "ok"
-    def do_some_other_thing(self, *args):
+    def do_some_other_thing(self):
+        """ count number of times called """
         self.do_some_other_thing_called += 1
         return "ok"
 
