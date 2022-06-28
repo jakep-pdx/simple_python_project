@@ -27,7 +27,7 @@ jobs:
         pytest --cov-report=html --cov-branch --cov=.
     - name: Check coverage
       run: |
-        coverage report --fail-under=80 --omit="*/__init__.py,*/tests/*"
+        coverage report --fail-under=80 --omit="setup.py,*/__init__.py,*/tests/*"
     - name: Build package
       run: |
         python -m build --wheel
