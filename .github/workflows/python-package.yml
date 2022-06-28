@@ -23,7 +23,7 @@ jobs:
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run pylint
       run: |
-        pylint simple_python_project/simple_py_proj --fail-under=8 
+        pylint --fail-under=8 simple_python_project/simple_py_proj
     - name: Run pytest
       run: |
         pytest simple_python_project --cov-report=html --cov-branch --cov=.
