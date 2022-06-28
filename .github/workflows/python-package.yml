@@ -30,7 +30,17 @@ jobs:
     - name: Check coverage
       run: |
         coverage report --fail-under=80 --omit="setup.py,*/__init__.py,*/tests/*"
+    - name: Upload coverage
+        uses: actions/upload-artifact@v3
+        with:
+          name: coverage
+          path: htmlcov/*
     - name: Build package
       run: |
         cd simple_python_project
         python -m build --wheel
+    - name: Upload package
+        uses: actions/upload-artifact@v3
+        with:
+          name: package
+          path: dist/*

@@ -1,4 +1,4 @@
-""" Simple module to practice writing tests against """
+""" Simple module for learning python testing and packaging """
 
 
 import sys
@@ -43,10 +43,11 @@ def do_every_thing(param1, param2):
     return result
 
 
-def main():
-    """ console entry point to call do_every_thing """
-    do_every_thing(sys.argv[1], sys.argv[2])
+def main(): #pragma: no cover
+    """ console entry point as referenced in setup.py and installed in env when pip installed """
+    do_every_thing(sys.argv[1], sys.argv[2]) #pragma: no cover
 
 
-if __name__ == '__main__':
-    do_every_thing(sys.argv[1], sys.argv[2])
+if __name__ == '__main__': #pragma: no cover
+    """ entry point for calling as local script """
+    do_every_thing(sys.argv[1], sys.argv[2]) #pragma: no cover
