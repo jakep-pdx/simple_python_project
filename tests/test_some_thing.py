@@ -1,7 +1,7 @@
 """ tests for some_thing """
 
 import pytest
-from some_module import some_thing
+from simple_py_proj import some_thing
 
 
 class StubSomeThing():

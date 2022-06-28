@@ -43,5 +43,10 @@ def do_every_thing(param1, param2):
     return result
 
 
+def main():
+    """ console entry point to call do_every_thing """
+    do_every_thing(sys.argv[1], sys.argv[2])
+
+
 if __name__ == '__main__':
     do_every_thing(sys.argv[1], sys.argv[2])
