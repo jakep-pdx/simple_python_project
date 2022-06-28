@@ -10,6 +10,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
+      path: simple_python_project
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
@@ -21,10 +22,10 @@ jobs:
         # if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run pylint
       run: |
-        pylint simple_py_proj --fail-under=8 
+        pylint simple_python_project/simple_py_proj --fail-under=8 
     - name: Run pytest
       run: |
-        pytest --cov-report=html --cov-branch --cov=.
+        pytest simple_python_project --cov-report=html --cov-branch --cov=.
     - name: Check coverage
       run: |
         coverage report --fail-under=80 --omit="setup.py,*/__init__.py,*/tests/*"
