@@ -52,7 +52,7 @@ jobs:
         python -m build --wheel
         echo $(echo ls dist/*.whl)
       env:
-        pkg_name: $(echo ls dist/*.whl)
+        pkg_name: $(ls dist/*.whl)
     # - name: Upload package
     #   uses: actions/upload-artifact@v3
     #   with:
