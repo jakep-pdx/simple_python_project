@@ -55,5 +55,5 @@ jobs:
     - name: Upload package
       uses: actions/upload-artifact@v3
       with:
-        name: $pkg_name
+        name: ${{ env.pkg_name }}
         path: simple_python_project/dist/*.whl
