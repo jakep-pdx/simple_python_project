@@ -48,6 +48,6 @@ def main(): #pragma: no cover
     do_every_thing(sys.argv[1], sys.argv[2]) #pragma: no cover
 
 
+# entry point for calling as local script
 if __name__ == '__main__': #pragma: no cover
-    """ entry point for calling as local script """
     do_every_thing(sys.argv[1], sys.argv[2]) #pragma: no cover

@@ -3,6 +3,22 @@ name: build simple python project
 on:
   push:
     branches: [ "main" ]
+  workflow_dispatch:
+    inputs:
+      buildPackage:
+        type: boolean
+        description: 'Build Package'     
+        required: true
+        default: false
+      versionType:
+        type: choice
+        description: 'Version Type'
+        required: true
+        default: 'PATCH'
+        options: |
+          - 'PATCH'
+          - 'MINOR'
+          - 'MAJOR'
 
 jobs:
   build:
@@ -34,8 +50,10 @@ jobs:
       run: |
         cd simple_python_project
         python -m build --wheel
+        env:
+          pkg_name: $(echo ls dist/*.whl)
     - name: Upload package
       uses: actions/upload-artifact@v3
       with:
-        name: package
+        name: $pkg_name
         path: simple_python_project/dist/*.whl
