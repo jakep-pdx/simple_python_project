@@ -9,7 +9,6 @@ on:
         type: boolean
         description: 'Build Package'     
         required: true
-        default: 'false'
       versionType:
         type: choice
         description: 'Version Type'
@@ -56,12 +55,12 @@ jobs:
         echo "pkg_name=$pkg_name" >> $GITHUB_ENV
       env:
         pkg_name: $pkg_name
-    # - name: Upload package
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: ${{ env.pkg_name }}
-    #     path: simple_python_project/dist/*.whl
+    - name: Upload package
+      uses: actions/upload-artifact@v3
+      with:
+        name: ${{ env.pkg_name }}
+        path: simple_python_project/dist/*.whl
     - name: check env var
       run: |
-        echo "1"${{ env.pkg_name }}
-        echo "2"$pkg_name
+        echo "1 "${{ env.pkg_name }}
+        echo "2 "$pkg_name
