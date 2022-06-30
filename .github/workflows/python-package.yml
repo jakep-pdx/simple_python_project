@@ -50,9 +50,10 @@ jobs:
       run: |
         cd simple_python_project
         python -m build --wheel
-        echo $(echo ls dist/*.whl)
+        pkg_name=$(ls dist/*.whl)
+        echo "pkg_name: "$pkg_name
       env:
-        pkg_name: $(ls dist/*.whl)
+        pkg_name: $pkg_name
     # - name: Upload package
     #   uses: actions/upload-artifact@v3
     #   with:
@@ -60,4 +61,5 @@ jobs:
     #     path: simple_python_project/dist/*.whl
     - name: check env var
       run: |
-        echo ${{ env.pkg_name }}
+        echo "1"${{ env.pkg_name }}
+        echo "2"$pkg_name
