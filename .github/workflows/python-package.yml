@@ -54,6 +54,8 @@ jobs:
         coverage report --fail-under=80 --omit="setup.py,*/__init__.py,*/tests/*"
 
     - name: Build package
+      buildPackage:
+      if: ${{ buildPackage }}
       run: |
         cd simple_python_project
         python -m build --wheel
@@ -63,6 +65,7 @@ jobs:
         echo "pkg_name=$pkg_name" >> $GITHUB_ENV
   
     - name: Upload package
+      if: ${{ buildPackage }}
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.pkg_name }}
