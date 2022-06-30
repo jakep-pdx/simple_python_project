@@ -1,25 +1,28 @@
 name: build simple python project
 
 on:
+  push:
+    branches:
+      - "main"
   workflow_dispatch:
     inputs:
       buildPackage:
-        type: choice
-        description: 'Build Package'     
+        description: Build Package
         required: true
         default: 'False'
-        options: |
-          - 'False'
-          - 'True'
-      versionType:
         type: choice
+        options:
+        - 'False'
+        - 'True'
+      versionType:
         description: 'Version Type'
         required: true
         default: 'PATCH'
-        options: |
-          - 'PATCH'
-          - 'MINOR'
-          - 'MAJOR'
+        type: choice
+        options:
+        - 'PATCH'
+        - 'MINOR'
+        - 'MAJOR'
 
 jobs:
   build:
