@@ -50,8 +50,8 @@ jobs:
       run: |
         cd simple_python_project
         python -m build --wheel
-        env:
-          pkg_name: $(echo ls dist/*.whl)
+      env:
+        pkg_name: $(echo ls dist/*.whl)
     - name: Upload package
       uses: actions/upload-artifact@v3
       with:
