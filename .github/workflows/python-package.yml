@@ -55,7 +55,7 @@ jobs:
 
     - name: Build package
       buildPackage:
-      if: ${{ buildPackage }}
+      if: ${{ github.event.buildPackage }}
       run: |
         cd simple_python_project
         python -m build --wheel
@@ -65,7 +65,7 @@ jobs:
         echo "pkg_name=$pkg_name" >> $GITHUB_ENV
   
     - name: Upload package
-      if: ${{ buildPackage }}
+      if: ${{ github.event.buildPackage }}
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.pkg_name }}
