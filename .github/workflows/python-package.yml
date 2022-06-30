@@ -6,9 +6,13 @@ on:
   workflow_dispatch:
     inputs:
       buildPackage:
-        type: boolean
+        type: choice
         description: 'Build Package'     
         required: true
+        default: 'False'
+        options: |
+          - 'False'
+          - 'True'
       versionType:
         type: choice
         description: 'Version Type'
