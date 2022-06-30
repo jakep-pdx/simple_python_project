@@ -2,8 +2,8 @@ name: build simple python project
 
 on:
   push:
-    # branches:
-    #   - "main"
+    branches:
+      - "main"
   workflow_dispatch:
     inputs:
       buildPackage:
@@ -29,24 +29,30 @@ jobs:
     - uses: actions/checkout@v3
       with:
         path: simple_python_project
+
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
       with:
         python-version: "3.10"
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         if [ -f simple_python_project/requirements-dev.txt ]; then pip install -r simple_python_project/requirements-dev.txt; fi
         # if [ -f simple_python_project/requirements.txt ]; then pip install -r simple_python_project/requirements.txt; fi
+
     - name: Run pylint
       run: |
         pylint simple_python_project/simple_py_proj --fail-under=8
+
     - name: Run pytest
       run: |
         pytest simple_python_project --cov-report=html --cov-branch --cov=.
+
     - name: Check coverage
       run: |
         coverage report --fail-under=80 --omit="setup.py,*/__init__.py,*/tests/*"
+
     - name: Build package
       run: |
         cd simple_python_project
@@ -55,14 +61,9 @@ jobs:
         pkg_name=$(ls *.whl)
         echo "pkg_name: "$pkg_name
         echo "pkg_name=$pkg_name" >> $GITHUB_ENV
-      env:
-        pkg_name: $pkg_name
+  
     - name: Upload package
       uses: actions/upload-artifact@v3
       with:
         name: ${{ env.pkg_name }}
         path: simple_python_project/dist/*.whl
-    - name: check env var
-      run: |
-        echo "1 "${{ env.pkg_name }}
-        echo "2 "$pkg_name
