@@ -30,7 +30,7 @@ jobs:
       with:
         path: simple_python_project
     
-    - name: check vars
+    - name: set vars
       run: |
         buildPackage="false"
         echo "buildPackage before if: $buildPackage"
@@ -52,6 +52,10 @@ jobs:
         echo "versionType=$versionType" >> $GITHUB_ENV
         echo "versionType: ${{ env.versionType }}"
 
+    - name: check vars
+      run: |
+        echo "buildPackage: ${{ env.buildPackage }}"
+        echo "versionType: ${{ env.versionType }}"
 
     # - name: Set up Python 3.10
     #   uses: actions/setup-python@v3
