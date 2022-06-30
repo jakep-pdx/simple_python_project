@@ -32,8 +32,8 @@ jobs:
     
     - name: check vars
       run: |
-        echo "buildPackage: "${{ github.event.inputs.buildPackage }}
-        echo "versionType: "${{ github.event.inputs.versionType }}
+        echo "buildPackage: ${{ github.event.inputs.buildPackage }}"
+        echo "versionType: ${{ github.event.inputs.versionType }}"
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
@@ -58,19 +58,19 @@ jobs:
       run: |
         coverage report --fail-under=80 --omit="setup.py,*/__init__.py,*/tests/*"
 
-    - name: Build package
-      # if: ${{ github.event.inputs.buildPackage == 'true' }}
-      run: |
-        cd simple_python_project
-        python -m build --wheel
-        cd dist
-        pkg_name=$(ls *.whl)
-        echo "pkg_name: "$pkg_name
-        echo "pkg_name=$pkg_name" >> $GITHUB_ENV
+    # - name: Build package
+    #   # if: ${{ github.event.inputs.buildPackage == 'true' }}
+    #   run: |
+    #     cd simple_python_project
+    #     python -m build --wheel
+    #     cd dist
+    #     pkg_name=$(ls *.whl)
+    #     echo "pkg_name: "$pkg_name
+    #     echo "pkg_name=$pkg_name" >> $GITHUB_ENV
   
-    - name: Upload package 
-      # if: ${{ github.event.inputs.buildPackage == 'true' }}
-      uses: actions/upload-artifact@v3
-      with:
-        name: ${{ env.pkg_name }}
-        path: simple_python_project/dist/*.whl
+    # - name: Upload package 
+    #   # if: ${{ github.event.inputs.buildPackage == 'true' }}
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: ${{ env.pkg_name }}
+    #     path: simple_python_project/dist/*.whl
