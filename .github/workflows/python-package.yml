@@ -9,16 +9,16 @@ on:
         type: boolean
         description: 'Build Package'     
         required: true
-        default: false
+        default: 'false'
       versionType:
         type: choice
         description: 'Version Type'
         required: true
         default: 'PATCH'
         options: |
-          - 'PATCH'
-          - 'MINOR'
-          - 'MAJOR'
+        - 'PATCH'
+        - 'MINOR'
+        - 'MAJOR'
 
 jobs:
   build:
@@ -50,8 +50,10 @@ jobs:
       run: |
         cd simple_python_project
         python -m build --wheel
-        pkg_name=$(ls dist/*.whl)
+        cd dist
+        pkg_name=$(ls *.whl)
         echo "pkg_name: "$pkg_name
+        echo "pkg_name=$pkg_name" >> $GITHUB_ENV
       env:
         pkg_name: $pkg_name
     # - name: Upload package
