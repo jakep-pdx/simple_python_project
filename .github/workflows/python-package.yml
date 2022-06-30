@@ -9,15 +9,16 @@ on:
         type: boolean
         description: 'Build Package'     
         required: true
+        default: 'false'
       versionType:
         type: choice
         description: 'Version Type'
         required: true
         default: 'PATCH'
         options: |
-        - 'PATCH'
-        - 'MINOR'
-        - 'MAJOR'
+          - 'PATCH'
+          - 'MINOR'
+          - 'MAJOR'
 
 jobs:
   build:
