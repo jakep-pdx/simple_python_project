@@ -32,8 +32,8 @@ jobs:
     
     - name: check vars
       run: |
-      echo "buildPackage: ${{ github.event.inputs.buildPackage }}"
-      echo "versionType: ${{ github.event.inputs.versionType }}"
+        echo "buildPackage: "${{ github.event.inputs.buildPackage }}
+        echo "versionType: "${{ github.event.inputs.versionType }}
 
     - name: Set up Python 3.10
       uses: actions/setup-python@v3
