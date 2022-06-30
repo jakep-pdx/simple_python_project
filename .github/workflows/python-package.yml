@@ -32,9 +32,23 @@ jobs:
     
     - name: check vars
       run: |
-        echo "buildPackage: ${{ github.event.inputs.buildPackage }}"
-        echo "versionType: ${{ github.event.inputs.versionType }}"
-        echo "event: ${{ toJSON(github.event) }}"
+        buildPackage="false"
+        if [ "${{ github.event.inputs.buildPackage }}" != ""]
+        then
+          buildPackage="${{ github.event.inputs.buildPackage }}"
+        fi
+        echo "buildPackage=$buildPackage" >> $GITHUB_ENV
+
+        versionType="PATCH"
+        if [ "${{ github.event.inputs.versionType }}" != ""]
+        then
+          versionType="${{ github.event.inputs.versionType }}"
+        fi
+        echo "versionType=$versionType" >> $GITHUB_ENV
+
+        echo "buildPackage: ${{ env.buildPackage }}"
+        echo "versionType: ${{ env.versionType }}"
+
 
     # - name: Set up Python 3.10
     #   uses: actions/setup-python@v3
