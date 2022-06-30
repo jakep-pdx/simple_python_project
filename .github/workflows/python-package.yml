@@ -33,20 +33,23 @@ jobs:
     - name: check vars
       run: |
         buildPackage="false"
+        echo "buildPackage before if: $buildPackage"
         if [ "${{ github.event.inputs.buildPackage }}" != "" ]
         then
           buildPackage="${{ github.event.inputs.buildPackage }}"
         fi
+        echo "buildPackage after if: $buildPackage"
         echo "buildPackage=$buildPackage" >> $GITHUB_ENV
+        echo "buildPackage: ${{ env.buildPackage }}"
 
         versionType="PATCH"
+        echo "versionType before if: $versionType"
         if [ "${{ github.event.inputs.versionType }}" != "" ]
         then
           versionType="${{ github.event.inputs.versionType }}"
         fi
+        echo "versionType after if: $versionType"
         echo "versionType=$versionType" >> $GITHUB_ENV
-
-        echo "buildPackage: ${{ env.buildPackage }}"
         echo "versionType: ${{ env.versionType }}"
 
 
