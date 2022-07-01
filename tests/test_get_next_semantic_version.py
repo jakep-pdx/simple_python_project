@@ -1,5 +1,5 @@
 import pytest
-from ap_ado_utils.pipeline_utils import next_semantic_version
+from simple_py_proj import next_semantic_version
 
 
 test_base_file_name = "ap_ado_utils-1.1.1-py3-none-any.whl"
