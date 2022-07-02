@@ -73,25 +73,25 @@ jobs:
       run: |
         coverage report --fail-under=80 --omit="setup.py,*/__init__.py,*/tests/*"
 
-    - name: Get next version
-      continue-on-error: true
-      run: |
-        pip download nkgkfkgkjchcndkflbvjhlhkfdhdgehgkggjh
-        file_name=$(ls nkgkfkgkjchcndkflbvjhlhkfdhdgehgkggjh*.whl)
-        if [ "$file_name" != "" ]
-          then
-          pip install $file_name
-          new_ver=$(get_next_ver_file_name $file_name ${{ env.versionType }})
-          echo "new_ver: "$new_ver
-          echo "new_ver=$new_ver" >> $GITHUB_ENV
-        else
-          echo "unable to get next version"
-        fi
+    # - name: Get next version
+    #   continue-on-error: true
+    #   run: |
+    #     pip download simple_python_project
+    #     file_name=$(ls simple_python_project*.whl)
+    #     if [ "$file_name" != "" ]
+    #       then
+    #       pip install $file_name
+    #       new_ver=$(get_next_ver_file_name $file_name ${{ env.versionType }})
+    #       echo "new_ver: "$new_ver
+    #       echo "new_ver=$new_ver" >> $GITHUB_ENV
+    #     else
+    #       echo "unable to get next version"
+    #     fi
 
-    - name: Build package
-      run: |
-        cd simple_python_project
-        python -m build --wheel
+    # - name: Build package
+    #   run: |
+    #     cd simple_python_project
+    #     python -m build --wheel
 
 
     #     cd dist
@@ -107,10 +107,10 @@ jobs:
     #     path: simple_python_project/dist/*.whl
 
 
-    - name: Publish package to pypi
-      if: ${{ env.publishPackage == 'true' }}
-      uses: pypa/gh-action-pypi-publish@release/v1.5
-      with:
-        user: __token__
-        password: ${{ secrets.PYPI_API_TOKEN }}
-        packages_dir: simple_python_project/dist
+    # - name: Publish package to pypi
+    #   if: ${{ env.publishPackage == 'true' }}
+    #   uses: pypa/gh-action-pypi-publish@release/v1.5
+    #   with:
+    #     user: __token__
+    #     password: ${{ secrets.PYPI_API_TOKEN }}
+    #     packages_dir: simple_python_project/dist

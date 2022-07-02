@@ -16,7 +16,7 @@ except KeyError:
     print("new_ver not found, using PKG_VERSION default:", PKG_VERSION)
 
 setup(
-    name = "nkgkfkgkjchcndkflbvjhlhkfdhdgehgkggjh", #random name as this is throw away
+    name = "simple_python_project",
     description = "simple test project",
     long_description = "simple test project",
     version = PKG_VERSION,
