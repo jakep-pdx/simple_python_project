@@ -2,8 +2,8 @@
 import os
 from setuptools import setup, find_packages
 
-with open("requirements.txt", encoding="utf-8") as f:
-    requirements = f.read().splitlines()
+# with open("requirements.txt", encoding="utf-8") as f:
+#     requirements = f.read().splitlines()
 
 PKG_VERSION = "0.0.0"
 try:
@@ -16,11 +16,12 @@ except KeyError:
     print("new_ver not found, using PKG_VERSION default:", PKG_VERSION)
 
 setup(
-    name = "simple_py_proj",
+    name = "nkgkfkgkjchcndkflbvjhlhkfdhdgehgkggjh", #random name as this is throw away
+    description = "simple test project",
+    long_description = "simple test project",
     version = PKG_VERSION,
     python_requires = ">=3.10",
     install_requires = "", #requirements.txt,
-    description = "simple test project",
     pakckages = find_packages(include=["simple_py_proj", "simple_py_proj.*"]),
     entry_points = {
         'console_scripts': ['do_every_thing=simple_py_proj.some_thing:main']
