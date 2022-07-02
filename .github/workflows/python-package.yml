@@ -89,7 +89,6 @@ jobs:
         fi
 
     - name: Build package
-      if: ${{ env.publishPackage == 'true' }}
       run: |
         cd simple_python_project
         python -m build --wheel
